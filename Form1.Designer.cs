@@ -33,7 +33,6 @@
             btnApkFilePath = new Button();
             label1 = new Label();
             label2 = new Label();
-            tbSignFilePath = new TextBox();
             btnSignFilePath = new Button();
             btnApkOutputPath = new Button();
             tbApkOutputPath = new TextBox();
@@ -48,6 +47,7 @@
             btnApkSignedVersion = new Button();
             cbDefaultSignedOutput = new CheckBox();
             cbDefaultSignFilePath = new CheckBox();
+            combSignFilePath = new ComboBox();
             groupBox1.SuspendLayout();
             SuspendLayout();
             // 
@@ -55,12 +55,12 @@
             // 
             tbApkFilePath.Location = new Point(12, 29);
             tbApkFilePath.Name = "tbApkFilePath";
-            tbApkFilePath.Size = new Size(597, 23);
+            tbApkFilePath.Size = new Size(596, 23);
             tbApkFilePath.TabIndex = 0;
             // 
             // btnApkFilePath
             // 
-            btnApkFilePath.Location = new Point(615, 29);
+            btnApkFilePath.Location = new Point(614, 29);
             btnApkFilePath.Name = "btnApkFilePath";
             btnApkFilePath.Size = new Size(26, 23);
             btnApkFilePath.TabIndex = 1;
@@ -80,22 +80,15 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(12, 74);
+            label2.Location = new Point(12, 80);
             label2.Name = "label2";
             label2.Size = new Size(104, 17);
             label2.TabIndex = 3;
             label2.Text = "系统签名文件路径";
             // 
-            // tbSignFilePath
-            // 
-            tbSignFilePath.Location = new Point(12, 94);
-            tbSignFilePath.Name = "tbSignFilePath";
-            tbSignFilePath.Size = new Size(597, 23);
-            tbSignFilePath.TabIndex = 4;
-            // 
             // btnSignFilePath
             // 
-            btnSignFilePath.Location = new Point(615, 94);
+            btnSignFilePath.Location = new Point(615, 100);
             btnSignFilePath.Name = "btnSignFilePath";
             btnSignFilePath.Size = new Size(26, 23);
             btnSignFilePath.TabIndex = 5;
@@ -105,7 +98,7 @@
             // 
             // btnApkOutputPath
             // 
-            btnApkOutputPath.Location = new Point(615, 180);
+            btnApkOutputPath.Location = new Point(615, 194);
             btnApkOutputPath.Name = "btnApkOutputPath";
             btnApkOutputPath.Size = new Size(26, 23);
             btnApkOutputPath.TabIndex = 8;
@@ -115,7 +108,7 @@
             // 
             // tbApkOutputPath
             // 
-            tbApkOutputPath.Location = new Point(12, 180);
+            tbApkOutputPath.Location = new Point(12, 194);
             tbApkOutputPath.Name = "tbApkOutputPath";
             tbApkOutputPath.Size = new Size(597, 23);
             tbApkOutputPath.TabIndex = 7;
@@ -123,7 +116,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(12, 160);
+            label3.Location = new Point(12, 174);
             label3.Name = "label3";
             label3.Size = new Size(139, 17);
             label3.TabIndex = 6;
@@ -168,7 +161,7 @@
             groupBox1.Controls.Add(rbV1);
             groupBox1.Controls.Add(rbV1V2V3);
             groupBox1.Controls.Add(rbV1V2);
-            groupBox1.Location = new Point(12, 263);
+            groupBox1.Location = new Point(12, 277);
             groupBox1.Name = "groupBox1";
             groupBox1.Size = new Size(597, 79);
             groupBox1.TabIndex = 12;
@@ -177,7 +170,7 @@
             // 
             // rtbOutput
             // 
-            rtbOutput.Location = new Point(12, 427);
+            rtbOutput.Location = new Point(12, 422);
             rtbOutput.Name = "rtbOutput";
             rtbOutput.ReadOnly = true;
             rtbOutput.Size = new Size(597, 334);
@@ -186,7 +179,7 @@
             // 
             // btnSignApk
             // 
-            btnSignApk.Location = new Point(12, 357);
+            btnSignApk.Location = new Point(12, 371);
             btnSignApk.Name = "btnSignApk";
             btnSignApk.Size = new Size(84, 34);
             btnSignApk.TabIndex = 14;
@@ -196,7 +189,7 @@
             // 
             // btnPrintCert
             // 
-            btnPrintCert.Location = new Point(123, 357);
+            btnPrintCert.Location = new Point(123, 371);
             btnPrintCert.Name = "btnPrintCert";
             btnPrintCert.Size = new Size(127, 34);
             btnPrintCert.TabIndex = 15;
@@ -207,7 +200,7 @@
             // btnApkSignedVersion
             // 
             btnApkSignedVersion.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            btnApkSignedVersion.Location = new Point(277, 357);
+            btnApkSignedVersion.Location = new Point(277, 371);
             btnApkSignedVersion.Name = "btnApkSignedVersion";
             btnApkSignedVersion.Size = new Size(127, 34);
             btnApkSignedVersion.TabIndex = 16;
@@ -218,7 +211,7 @@
             // cbDefaultSignedOutput
             // 
             cbDefaultSignedOutput.AutoSize = true;
-            cbDefaultSignedOutput.Location = new Point(12, 209);
+            cbDefaultSignedOutput.Location = new Point(12, 223);
             cbDefaultSignedOutput.Name = "cbDefaultSignedOutput";
             cbDefaultSignedOutput.Size = new Size(135, 21);
             cbDefaultSignedOutput.TabIndex = 17;
@@ -229,7 +222,7 @@
             // cbDefaultSignFilePath
             // 
             cbDefaultSignFilePath.AutoSize = true;
-            cbDefaultSignFilePath.Location = new Point(12, 123);
+            cbDefaultSignFilePath.Location = new Point(12, 129);
             cbDefaultSignFilePath.Name = "cbDefaultSignFilePath";
             cbDefaultSignFilePath.Size = new Size(111, 21);
             cbDefaultSignFilePath.TabIndex = 18;
@@ -237,11 +230,24 @@
             cbDefaultSignFilePath.UseVisualStyleBackColor = true;
             cbDefaultSignFilePath.CheckedChanged += cbDefaultSignedOutput_CheckedChanged;
             // 
+            // combSignFilePath
+            // 
+            combSignFilePath.FormattingEnabled = true;
+            combSignFilePath.Items.AddRange(new object[] { "item1", "item2" });
+            combSignFilePath.Location = new Point(12, 100);
+            combSignFilePath.Name = "combSignFilePath";
+            combSignFilePath.Size = new Size(596, 25);
+            combSignFilePath.TabIndex = 19;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(652, 774);
+            ClientSize = new Size(652, 766);
+            Controls.Add(combSignFilePath);
+            Controls.Add(label1);
+            Controls.Add(tbApkFilePath);
+            Controls.Add(btnApkFilePath);
             Controls.Add(cbDefaultSignFilePath);
             Controls.Add(cbDefaultSignedOutput);
             Controls.Add(btnApkSignedVersion);
@@ -253,11 +259,7 @@
             Controls.Add(tbApkOutputPath);
             Controls.Add(label3);
             Controls.Add(btnSignFilePath);
-            Controls.Add(tbSignFilePath);
             Controls.Add(label2);
-            Controls.Add(label1);
-            Controls.Add(btnApkFilePath);
-            Controls.Add(tbApkFilePath);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Form1";
@@ -274,7 +276,6 @@
         private Button btnApkFilePath;
         private Label label1;
         private Label label2;
-        private TextBox tbSignFilePath;
         private Button btnSignFilePath;
         private Button btnApkOutputPath;
         private TextBox tbApkOutputPath;
@@ -289,5 +290,6 @@
         private Button btnApkSignedVersion;
         private CheckBox cbDefaultSignedOutput;
         private CheckBox cbDefaultSignFilePath;
+        private ComboBox combSignFilePath;
     }
 }

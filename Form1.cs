@@ -9,10 +9,16 @@ namespace AndroidApkSignHelper
         const string DEFAULT_SIGN_FILE_PATH = "default_sign_file_path";
         const string DEFAULT_OUTPUT_APK_PATH = "default_output_apk_path";
 
+        Dictionary<string, string> ConfigSignPaths;
+
         public Form1()
         {
             InitializeComponent();
             this.Text = Application.ProductName;
+
+            ConfigSignPaths = DefaultSignFilesHelper.GetSignConfigItems();
+            combSignFilePath.Items.Clear();
+            combSignFilePath.Items.AddRange(ConfigSignPaths.Keys.ToArray());
         }
 
         private void btnApkFilePath_Click(object sender, EventArgs e)
@@ -29,9 +35,9 @@ namespace AndroidApkSignHelper
             if (null != defaultSignFilePath)
             {
                 folderBrowserDialog.SelectedPath = defaultSignFilePath;
-            }           
+            }
             folderBrowserDialog.ShowDialog();
-            tbSignFilePath.Text = folderBrowserDialog.SelectedPath;
+            combSignFilePath.Text = folderBrowserDialog.SelectedPath;
         }
 
         private void btnApkOutputPath_Click(object sender, EventArgs e)
@@ -70,8 +76,9 @@ namespace AndroidApkSignHelper
 
         private void btnSignApk_Click(object sender, EventArgs e)
         {
-            string pk8 = Path.Combine(tbSignFilePath.Text, "platform.pk8");
-            string pem = Path.Combine(tbSignFilePath.Text, "platform.x509.pem");
+            string signFilePath = GetSignFilePath();
+            string pk8 = Path.Combine(signFilePath, "platform.pk8");
+            string pem = Path.Combine(signFilePath, "platform.x509.pem");
             string outApk = Path.Combine(tbApkOutputPath.Text, Path.GetFileNameWithoutExtension(tbApkFilePath.Text) + "-signed.apk");
             string inApk = tbApkFilePath.Text;
             string zipAlginApk = Path.Combine(tbApkOutputPath.Text, Path.GetFileNameWithoutExtension(tbApkFilePath.Text) + "-zipalign.apk");
@@ -95,7 +102,8 @@ namespace AndroidApkSignHelper
                 cmd += " --v1-signing-enabled true --v2-signing-enabled true --v3-signing-enabled true";
             }
 
-            Utils.GetCmdResult(zipCmd, (e) => {
+            Utils.GetCmdResult(zipCmd, (e) =>
+            {
                 BeginInvoke(() =>
                 {
                     rtbOutput.Text = e;
@@ -111,7 +119,7 @@ namespace AndroidApkSignHelper
                             Process.Start("explorer", tbApkOutputPath.Text);
                         });
                     });
-                });                
+                });
             });
         }
 
@@ -121,12 +129,12 @@ namespace AndroidApkSignHelper
             if (checkBox != null && checkBox.Checked)
             {
                 string key = "", value = "";
-                switch(checkBox.Name)
+                switch (checkBox.Name)
                 {
                     case "cbDefaultSignFilePath":
                         {
                             key = DEFAULT_SIGN_FILE_PATH;
-                            value = tbSignFilePath.Text;
+                            value = GetSignFilePath();
                         }
                         break;
                     case "cbDefaultSignedOutput":
@@ -138,6 +146,16 @@ namespace AndroidApkSignHelper
                 }
                 IniFileHelper.WriteIniFile(CONFIG_FILE, SECTION, key, value);
             }
+        }
+
+        string GetSignFilePath()
+        {
+            string signFilePath = combSignFilePath.Text;
+            if (ConfigSignPaths.ContainsKey(signFilePath))
+            {
+                signFilePath = ConfigSignPaths[signFilePath];
+            }
+            return signFilePath;
         }
     }
 }

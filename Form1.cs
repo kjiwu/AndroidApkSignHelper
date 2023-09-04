@@ -148,6 +148,63 @@ namespace AndroidApkSignHelper
             }
         }
 
+        private void control_DragDrop(object sender, DragEventArgs e)
+        {
+            Control? control = sender as Control;
+            Array items = (Array)e.Data.GetData(DataFormats.FileDrop, true);
+            string value = items.GetValue(0).ToString();
+            switch (control.Name)
+            {
+                case "tbApkFilePath":
+                    {
+                        tbApkFilePath.Text = value;
+                    }
+                    break;
+                case "combSignFilePath":
+                    {
+                        combSignFilePath.Text = value;
+                    }
+                    break;
+                case "tbApkOutputPath":
+                    {
+                        tbApkOutputPath.Text = value;
+                    }
+                    break;
+            }
+        }
+
+        private void control_DragEnter(object sender, DragEventArgs e)
+        {
+            Control? control = sender as Control;
+
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                Array items = (Array)e.Data.GetData(DataFormats.FileDrop, true);
+                string value = items.GetValue(0).ToString();
+                switch (control.Name)
+                {
+                    case "tbApkFilePath":
+                        {
+                            if (File.Exists(value))
+                            {
+                                e.Effect = DragDropEffects.Link;
+                            }
+                        }
+                        break;
+                    case "combSignFilePath":
+                    case "tbApkOutputPath":
+                        {
+                            if (Directory.Exists(value))
+                            {
+                                e.Effect = DragDropEffects.Link;
+                            }
+                        }
+                        break;
+                }
+            }
+        }
+
+
         string GetSignFilePath()
         {
             string signFilePath = combSignFilePath.Text;

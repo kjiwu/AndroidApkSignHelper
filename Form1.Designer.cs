@@ -53,10 +53,13 @@
             // 
             // tbApkFilePath
             // 
+            tbApkFilePath.AllowDrop = true;
             tbApkFilePath.Location = new Point(12, 29);
             tbApkFilePath.Name = "tbApkFilePath";
             tbApkFilePath.Size = new Size(596, 23);
             tbApkFilePath.TabIndex = 0;
+            tbApkFilePath.DragDrop += control_DragDrop;
+            tbApkFilePath.DragEnter += control_DragEnter;
             // 
             // btnApkFilePath
             // 
@@ -108,10 +111,13 @@
             // 
             // tbApkOutputPath
             // 
+            tbApkOutputPath.AllowDrop = true;
             tbApkOutputPath.Location = new Point(12, 194);
             tbApkOutputPath.Name = "tbApkOutputPath";
             tbApkOutputPath.Size = new Size(597, 23);
             tbApkOutputPath.TabIndex = 7;
+            tbApkOutputPath.DragDrop += control_DragDrop;
+            tbApkOutputPath.DragEnter += control_DragEnter;
             // 
             // label3
             // 
@@ -232,12 +238,15 @@
             // 
             // combSignFilePath
             // 
+            combSignFilePath.AllowDrop = true;
             combSignFilePath.FormattingEnabled = true;
             combSignFilePath.Items.AddRange(new object[] { "item1", "item2" });
             combSignFilePath.Location = new Point(12, 100);
             combSignFilePath.Name = "combSignFilePath";
             combSignFilePath.Size = new Size(596, 25);
             combSignFilePath.TabIndex = 19;
+            combSignFilePath.DragDrop += control_DragDrop;
+            combSignFilePath.DragEnter += control_DragEnter;
             // 
             // Form1
             // 

@@ -54,7 +54,7 @@ namespace AndroidApkSignHelper
 
         private void btnPrintCert_Click(object sender, EventArgs e)
         {
-            Utils.GetCmdResult($"keytool -printcert -jarfile {tbApkFilePath.Text}", (e) =>
+            Utils.GetCmdResultByArguments($"keytool -printcert -jarfile {tbApkFilePath.Text}", (e) =>
             {
                 BeginInvoke(() =>
                 {
@@ -65,7 +65,7 @@ namespace AndroidApkSignHelper
 
         private void btnApkSignedVersion_Click(object sender, EventArgs e)
         {
-            Utils.GetCmdResult($"java -jar apksigner.jar verify -v --print-certs {tbApkFilePath.Text}", (e) =>
+            Utils.GetCmdResultByArguments($"java -jar apksigner.jar verify -v --print-certs {tbApkFilePath.Text}", (e) =>
             {
                 BeginInvoke(() =>
                 {
@@ -102,13 +102,13 @@ namespace AndroidApkSignHelper
                 cmd += " --v1-signing-enabled true --v2-signing-enabled true --v3-signing-enabled true";
             }
 
-            Utils.GetCmdResult(zipCmd, (e) =>
+            Utils.GetCmdResultByArguments(zipCmd, (e) =>
             {
                 BeginInvoke(() =>
                 {
                     rtbOutput.Text = e;
 
-                    Utils.GetCmdResult(cmd, (ee) =>
+                    Utils.GetCmdResultByArguments(cmd, (ee) =>
                     {
                         BeginInvoke(() =>
                         {

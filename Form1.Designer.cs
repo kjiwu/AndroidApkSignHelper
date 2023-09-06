@@ -56,14 +56,14 @@
             tbApkFilePath.AllowDrop = true;
             tbApkFilePath.Location = new Point(12, 29);
             tbApkFilePath.Name = "tbApkFilePath";
-            tbApkFilePath.Size = new Size(596, 23);
+            tbApkFilePath.Size = new Size(441, 23);
             tbApkFilePath.TabIndex = 0;
             tbApkFilePath.DragDrop += control_DragDrop;
             tbApkFilePath.DragEnter += control_DragEnter;
             // 
             // btnApkFilePath
             // 
-            btnApkFilePath.Location = new Point(614, 29);
+            btnApkFilePath.Location = new Point(459, 29);
             btnApkFilePath.Name = "btnApkFilePath";
             btnApkFilePath.Size = new Size(26, 23);
             btnApkFilePath.TabIndex = 1;
@@ -91,7 +91,7 @@
             // 
             // btnSignFilePath
             // 
-            btnSignFilePath.Location = new Point(615, 100);
+            btnSignFilePath.Location = new Point(459, 100);
             btnSignFilePath.Name = "btnSignFilePath";
             btnSignFilePath.Size = new Size(26, 23);
             btnSignFilePath.TabIndex = 5;
@@ -101,7 +101,7 @@
             // 
             // btnApkOutputPath
             // 
-            btnApkOutputPath.Location = new Point(615, 194);
+            btnApkOutputPath.Location = new Point(459, 194);
             btnApkOutputPath.Name = "btnApkOutputPath";
             btnApkOutputPath.Size = new Size(26, 23);
             btnApkOutputPath.TabIndex = 8;
@@ -114,7 +114,7 @@
             tbApkOutputPath.AllowDrop = true;
             tbApkOutputPath.Location = new Point(12, 194);
             tbApkOutputPath.Name = "tbApkOutputPath";
-            tbApkOutputPath.Size = new Size(597, 23);
+            tbApkOutputPath.Size = new Size(441, 23);
             tbApkOutputPath.TabIndex = 7;
             tbApkOutputPath.DragDrop += control_DragDrop;
             tbApkOutputPath.DragEnter += control_DragEnter;
@@ -169,17 +169,19 @@
             groupBox1.Controls.Add(rbV1V2);
             groupBox1.Location = new Point(12, 277);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(597, 79);
+            groupBox1.Size = new Size(473, 79);
             groupBox1.TabIndex = 12;
             groupBox1.TabStop = false;
             groupBox1.Text = "签名方式";
             // 
             // rtbOutput
             // 
-            rtbOutput.Location = new Point(12, 422);
+            rtbOutput.BackColor = SystemColors.ButtonFace;
+            rtbOutput.BorderStyle = BorderStyle.FixedSingle;
+            rtbOutput.Location = new Point(512, 12);
             rtbOutput.Name = "rtbOutput";
             rtbOutput.ReadOnly = true;
-            rtbOutput.Size = new Size(597, 334);
+            rtbOutput.Size = new Size(569, 582);
             rtbOutput.TabIndex = 13;
             rtbOutput.Text = "";
             // 
@@ -243,7 +245,7 @@
             combSignFilePath.Items.AddRange(new object[] { "item1", "item2" });
             combSignFilePath.Location = new Point(12, 100);
             combSignFilePath.Name = "combSignFilePath";
-            combSignFilePath.Size = new Size(596, 25);
+            combSignFilePath.Size = new Size(441, 25);
             combSignFilePath.TabIndex = 19;
             combSignFilePath.DragDrop += control_DragDrop;
             combSignFilePath.DragEnter += control_DragEnter;
@@ -252,7 +254,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(652, 766);
+            ClientSize = new Size(1093, 606);
             Controls.Add(combSignFilePath);
             Controls.Add(label1);
             Controls.Add(tbApkFilePath);

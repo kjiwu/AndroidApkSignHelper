@@ -9,6 +9,8 @@ namespace AndroidApkSignHelper
         const string DEFAULT_SIGN_FILE_PATH = "default_sign_file_path";
         const string DEFAULT_OUTPUT_APK_PATH = "default_output_apk_path";
 
+        const string DEFAULT_JRE_PATH = "jre";
+
         Dictionary<string, string> ConfigSignPaths;
 
         public Form1()
@@ -54,24 +56,50 @@ namespace AndroidApkSignHelper
 
         private void btnPrintCert_Click(object sender, EventArgs e)
         {
-            Utils.GetCmdResultByArguments($"keytool -printcert -jarfile {tbApkFilePath.Text}", (e) =>
+            if (Directory.Exists(DEFAULT_JRE_PATH))
             {
-                BeginInvoke(() =>
+                Utils.GetCmdResultByArguments($"{Path.Combine(DEFAULT_JRE_PATH, "bin", "keytool.exe")} -printcert -jarfile {tbApkFilePath.Text}", (e) =>
                 {
-                    rtbOutput.Text = e;
+                    BeginInvoke(() =>
+                    {
+                        rtbOutput.Text = e;
+                    });
                 });
-            });
+            }
+            else
+            {
+                Utils.GetCmdResultByArguments($"keytool -printcert -jarfile {tbApkFilePath.Text}", (e) =>
+                {
+                    BeginInvoke(() =>
+                    {
+                        rtbOutput.Text = e;
+                    });
+                });
+            }
         }
 
         private void btnApkSignedVersion_Click(object sender, EventArgs e)
         {
-            Utils.GetCmdResultByArguments($"java -jar apksigner.jar verify -v --print-certs {tbApkFilePath.Text}", (e) =>
+            if (Directory.Exists(DEFAULT_JRE_PATH))
             {
-                BeginInvoke(() =>
+                Utils.GetCmdResultByArguments($"{Path.Combine(DEFAULT_JRE_PATH, "bin", "java.exe")} -jar apksigner.jar verify -v --print-certs {tbApkFilePath.Text}", (e) =>
                 {
-                    rtbOutput.Text = e;
+                    BeginInvoke(() =>
+                    {
+                        rtbOutput.Text = e;
+                    });
                 });
-            });
+            }
+            else
+            {
+                Utils.GetCmdResultByArguments($"java -jar apksigner.jar verify -v --print-certs {tbApkFilePath.Text}", (e) =>
+                {
+                    BeginInvoke(() =>
+                    {
+                        rtbOutput.Text = e;
+                    });
+                });
+            }
         }
 
         private void btnSignApk_Click(object sender, EventArgs e)
@@ -86,6 +114,10 @@ namespace AndroidApkSignHelper
 
             string zipCmd = $"zipalign.exe -v 4 \"{inApk}\" \"{zipAlginApk}\"";
             string cmd = $"java -jar apksigner.jar sign --key \"{pk8}\" --cert \"{pem}\" --out \"{outApk}\" --in \"{zipAlginApk}\"";
+            if (Directory.Exists(DEFAULT_JRE_PATH))
+            {
+                cmd = $"{Path.Combine(DEFAULT_JRE_PATH, "bin", "java.exe")} -jar apksigner.jar sign --key \"{pk8}\" --cert \"{pem}\" --out \"{outApk}\" --in \"{zipAlginApk}\"";
+            }
 
             if (rbV1.Checked)
             {

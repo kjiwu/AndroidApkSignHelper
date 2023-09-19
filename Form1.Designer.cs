@@ -48,6 +48,8 @@
             cbDefaultSignedOutput = new CheckBox();
             cbDefaultSignFilePath = new CheckBox();
             combSignFilePath = new ComboBox();
+            BtnViewApkInfo = new Button();
+            BtnInstallApk = new Button();
             groupBox1.SuspendLayout();
             SuspendLayout();
             // 
@@ -250,11 +252,35 @@
             combSignFilePath.DragDrop += control_DragDrop;
             combSignFilePath.DragEnter += control_DragEnter;
             // 
+            // BtnViewApkInfo
+            // 
+            BtnViewApkInfo.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            BtnViewApkInfo.Location = new Point(12, 425);
+            BtnViewApkInfo.Name = "BtnViewApkInfo";
+            BtnViewApkInfo.Size = new Size(111, 34);
+            BtnViewApkInfo.TabIndex = 20;
+            BtnViewApkInfo.Text = "查看Apk信息";
+            BtnViewApkInfo.UseVisualStyleBackColor = true;
+            BtnViewApkInfo.Click += BtnViewApkInfo_Click;
+            // 
+            // BtnInstallApk
+            // 
+            BtnInstallApk.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            BtnInstallApk.Location = new Point(139, 425);
+            BtnInstallApk.Name = "BtnInstallApk";
+            BtnInstallApk.Size = new Size(111, 34);
+            BtnInstallApk.TabIndex = 21;
+            BtnInstallApk.Text = "安装Apk";
+            BtnInstallApk.UseVisualStyleBackColor = true;
+            BtnInstallApk.Click += BtnInstallApk_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1093, 606);
+            Controls.Add(BtnInstallApk);
+            Controls.Add(BtnViewApkInfo);
             Controls.Add(combSignFilePath);
             Controls.Add(label1);
             Controls.Add(tbApkFilePath);
@@ -302,5 +328,7 @@
         private CheckBox cbDefaultSignedOutput;
         private CheckBox cbDefaultSignFilePath;
         private ComboBox combSignFilePath;
+        private Button BtnViewApkInfo;
+        private Button BtnInstallApk;
     }
 }

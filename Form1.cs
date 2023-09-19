@@ -58,7 +58,7 @@ namespace AndroidApkSignHelper
         {
             if (Directory.Exists(DEFAULT_JRE_PATH))
             {
-                Utils.GetCmdResultByArguments($"{Path.Combine(DEFAULT_JRE_PATH, "bin", "keytool.exe")} -printcert -jarfile {tbApkFilePath.Text}", (e) =>
+                Utils.GetCmdResultByArguments($"{Path.Combine(DEFAULT_JRE_PATH, "bin", "keytool.exe")} -printcert -jarfile \"{tbApkFilePath.Text}\"", (e) =>
                 {
                     BeginInvoke(() =>
                     {
@@ -68,7 +68,7 @@ namespace AndroidApkSignHelper
             }
             else
             {
-                Utils.GetCmdResultByArguments($"keytool -printcert -jarfile {tbApkFilePath.Text}", (e) =>
+                Utils.GetCmdResultByArguments($"keytool -printcert -jarfile \"{tbApkFilePath.Text}\"", (e) =>
                 {
                     BeginInvoke(() =>
                     {
@@ -82,7 +82,7 @@ namespace AndroidApkSignHelper
         {
             if (Directory.Exists(DEFAULT_JRE_PATH))
             {
-                Utils.GetCmdResultByArguments($"{Path.Combine(DEFAULT_JRE_PATH, "bin", "java.exe")} -jar apksigner.jar verify -v --print-certs {tbApkFilePath.Text}", (e) =>
+                Utils.GetCmdResultByArguments($"{Path.Combine(DEFAULT_JRE_PATH, "bin", "java.exe")} -jar apksigner.jar verify -v --print-certs \"{tbApkFilePath.Text}\"", (e) =>
                 {
                     BeginInvoke(() =>
                     {
@@ -92,7 +92,7 @@ namespace AndroidApkSignHelper
             }
             else
             {
-                Utils.GetCmdResultByArguments($"java -jar apksigner.jar verify -v --print-certs {tbApkFilePath.Text}", (e) =>
+                Utils.GetCmdResultByArguments($"java -jar apksigner.jar verify -v --print-certs \"{tbApkFilePath.Text}\"", (e) =>
                 {
                     BeginInvoke(() =>
                     {
@@ -245,6 +245,28 @@ namespace AndroidApkSignHelper
                 signFilePath = ConfigSignPaths[signFilePath];
             }
             return signFilePath;
+        }
+
+        private void BtnViewApkInfo_Click(object sender, EventArgs e)
+        {
+            Utils.GetCmdResultByArguments($"aapt.exe dump badging \"{tbApkFilePath.Text}\"", (e) =>
+            {
+                BeginInvoke(() =>
+                {
+                    rtbOutput.Text = e;
+                });
+            });
+        }
+
+        private void BtnInstallApk_Click(object sender, EventArgs e)
+        {
+            Utils.GetCmdResultByArguments($"adb install \"{tbApkFilePath.Text}\"", (e) =>
+            {
+                BeginInvoke(() =>
+                {
+                    rtbOutput.Text = e;
+                });
+            });
         }
     }
 }

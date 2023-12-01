@@ -107,9 +107,10 @@ namespace AndroidApkSignHelper
             string signFilePath = GetSignFilePath();
             string pk8 = Path.Combine(signFilePath, "platform.pk8");
             string pem = Path.Combine(signFilePath, "platform.x509.pem");
-            string outApk = Path.Combine(tbApkOutputPath.Text, Path.GetFileNameWithoutExtension(tbApkFilePath.Text) + "-signed.apk");
+            string outApkPath = string.IsNullOrEmpty(tbApkOutputPath.Text) ? Path.GetDirectoryName(tbApkFilePath.Text) : tbApkOutputPath.Text;
+            string outApk = Path.Combine(outApkPath, Path.GetFileNameWithoutExtension(tbApkFilePath.Text) + "-signed.apk");
             string inApk = tbApkFilePath.Text;
-            string zipAlginApk = Path.Combine(tbApkOutputPath.Text, Path.GetFileNameWithoutExtension(tbApkFilePath.Text) + "-zipalign.apk");
+            string zipAlginApk = Path.Combine(outApkPath, Path.GetFileNameWithoutExtension(tbApkFilePath.Text) + "-zipalign.apk");
 
 
             string zipCmd = $"zipalign.exe -v 4 \"{inApk}\" \"{zipAlginApk}\"";
@@ -146,9 +147,9 @@ namespace AndroidApkSignHelper
                         {
                             rtbOutput.Text += ee;
                             File.Delete(zipAlginApk);
-                            File.Delete(Path.Combine(tbApkOutputPath.Text, Path.GetFileNameWithoutExtension(tbApkFilePath.Text) + "-signed.apk.idsig"));
+                            File.Delete(Path.Combine(outApkPath, Path.GetFileNameWithoutExtension(tbApkFilePath.Text) + "-signed.apk.idsig"));
 
-                            Process.Start("explorer", tbApkOutputPath.Text);
+                            Process.Start("explorer", outApkPath);
                         });
                     });
                 });

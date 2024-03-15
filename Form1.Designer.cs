@@ -50,6 +50,7 @@
             combSignFilePath = new ComboBox();
             BtnViewApkInfo = new Button();
             BtnInstallApk = new Button();
+            btnGetChecksum = new Button();
             groupBox1.SuspendLayout();
             SuspendLayout();
             // 
@@ -274,11 +275,22 @@
             BtnInstallApk.UseVisualStyleBackColor = true;
             BtnInstallApk.Click += BtnInstallApk_Click;
             // 
+            // btnGetChecksum
+            // 
+            btnGetChecksum.Location = new Point(277, 425);
+            btnGetChecksum.Name = "btnGetChecksum";
+            btnGetChecksum.Size = new Size(127, 34);
+            btnGetChecksum.TabIndex = 22;
+            btnGetChecksum.Text = "生成Checksum";
+            btnGetChecksum.UseVisualStyleBackColor = true;
+            btnGetChecksum.Click += btnGetChecksum_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1093, 606);
+            Controls.Add(btnGetChecksum);
             Controls.Add(BtnInstallApk);
             Controls.Add(BtnViewApkInfo);
             Controls.Add(combSignFilePath);
@@ -330,5 +342,6 @@
         private ComboBox combSignFilePath;
         private Button BtnViewApkInfo;
         private Button BtnInstallApk;
+        private Button btnGetChecksum;
     }
 }

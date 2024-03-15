@@ -269,5 +269,20 @@ namespace AndroidApkSignHelper
                 });
             });
         }
+
+        private void btnGetChecksum_Click(object sender, EventArgs e)
+        {
+            string cmd = $"type {tbApkFilePath.Text} | openssl dgst -binary -sha256 | openssl base64";
+            Utils.GetCmdResultByArguments(cmd, (e) =>
+            {
+                BeginInvoke(() =>
+                {
+                    rtbOutput.Clear();
+                    string checksum = e.Replace("+", "-").Replace("/", "_").Replace("=", "");
+                    rtbOutput.Text = checksum;
+                    Clipboard.SetText(checksum);
+                });
+            });
+        }
     }
 }

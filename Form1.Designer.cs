@@ -51,6 +51,7 @@
             BtnViewApkInfo = new Button();
             BtnInstallApk = new Button();
             btnGetChecksum = new Button();
+            cbOpenAfterSign = new CheckBox();
             groupBox1.SuspendLayout();
             SuspendLayout();
             // 
@@ -170,7 +171,7 @@
             groupBox1.Controls.Add(rbV1);
             groupBox1.Controls.Add(rbV1V2V3);
             groupBox1.Controls.Add(rbV1V2);
-            groupBox1.Location = new Point(12, 277);
+            groupBox1.Location = new Point(12, 335);
             groupBox1.Name = "groupBox1";
             groupBox1.Size = new Size(473, 79);
             groupBox1.TabIndex = 12;
@@ -190,7 +191,7 @@
             // 
             // btnSignApk
             // 
-            btnSignApk.Location = new Point(12, 371);
+            btnSignApk.Location = new Point(12, 429);
             btnSignApk.Name = "btnSignApk";
             btnSignApk.Size = new Size(84, 34);
             btnSignApk.TabIndex = 14;
@@ -200,7 +201,7 @@
             // 
             // btnPrintCert
             // 
-            btnPrintCert.Location = new Point(123, 371);
+            btnPrintCert.Location = new Point(123, 429);
             btnPrintCert.Name = "btnPrintCert";
             btnPrintCert.Size = new Size(127, 34);
             btnPrintCert.TabIndex = 15;
@@ -211,7 +212,7 @@
             // btnApkSignedVersion
             // 
             btnApkSignedVersion.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            btnApkSignedVersion.Location = new Point(277, 371);
+            btnApkSignedVersion.Location = new Point(277, 429);
             btnApkSignedVersion.Name = "btnApkSignedVersion";
             btnApkSignedVersion.Size = new Size(127, 34);
             btnApkSignedVersion.TabIndex = 16;
@@ -256,7 +257,7 @@
             // BtnViewApkInfo
             // 
             BtnViewApkInfo.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            BtnViewApkInfo.Location = new Point(12, 425);
+            BtnViewApkInfo.Location = new Point(12, 483);
             BtnViewApkInfo.Name = "BtnViewApkInfo";
             BtnViewApkInfo.Size = new Size(111, 34);
             BtnViewApkInfo.TabIndex = 20;
@@ -267,7 +268,7 @@
             // BtnInstallApk
             // 
             BtnInstallApk.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            BtnInstallApk.Location = new Point(139, 425);
+            BtnInstallApk.Location = new Point(139, 483);
             BtnInstallApk.Name = "BtnInstallApk";
             BtnInstallApk.Size = new Size(111, 34);
             BtnInstallApk.TabIndex = 21;
@@ -277,7 +278,7 @@
             // 
             // btnGetChecksum
             // 
-            btnGetChecksum.Location = new Point(277, 425);
+            btnGetChecksum.Location = new Point(277, 483);
             btnGetChecksum.Name = "btnGetChecksum";
             btnGetChecksum.Size = new Size(127, 34);
             btnGetChecksum.TabIndex = 22;
@@ -285,11 +286,23 @@
             btnGetChecksum.UseVisualStyleBackColor = true;
             btnGetChecksum.Click += btnGetChecksum_Click;
             // 
+            // cbOpenAfterSign
+            // 
+            cbOpenAfterSign.AutoSize = true;
+            cbOpenAfterSign.Location = new Point(12, 283);
+            cbOpenAfterSign.Name = "cbOpenAfterSign";
+            cbOpenAfterSign.Size = new Size(159, 21);
+            cbOpenAfterSign.TabIndex = 23;
+            cbOpenAfterSign.Text = "签名完毕打开相应文件夹";
+            cbOpenAfterSign.UseVisualStyleBackColor = true;
+            cbOpenAfterSign.CheckedChanged += cbDefaultSignedOutput_CheckedChanged;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1093, 606);
+            Controls.Add(cbOpenAfterSign);
             Controls.Add(btnGetChecksum);
             Controls.Add(BtnInstallApk);
             Controls.Add(BtnViewApkInfo);
@@ -343,5 +356,6 @@
         private Button BtnViewApkInfo;
         private Button BtnInstallApk;
         private Button btnGetChecksum;
+        private CheckBox cbOpenAfterSign;
     }
 }

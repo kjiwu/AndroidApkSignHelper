@@ -8,6 +8,7 @@ namespace AndroidApkSignHelper
         const string SECTION = "Config";
         const string DEFAULT_SIGN_FILE_PATH = "default_sign_file_path";
         const string DEFAULT_OUTPUT_APK_PATH = "default_output_apk_path";
+        const string DEFAULT_OPEN_FOLDER_AFTER_SIGN = "default_open_folder_after_sign";
 
         const string DEFAULT_JRE_PATH = "jre";
 
@@ -21,6 +22,11 @@ namespace AndroidApkSignHelper
             ConfigSignPaths = DefaultSignFilesHelper.GetSignConfigItems();
             combSignFilePath.Items.Clear();
             combSignFilePath.Items.AddRange(ConfigSignPaths.Keys.ToArray());
+
+            tbApkOutputPath.Text = IniFileHelper.ReadIniFileValue(CONFIG_FILE, SECTION, DEFAULT_OUTPUT_APK_PATH);
+            combSignFilePath.Text = IniFileHelper.ReadIniFileValue(CONFIG_FILE, SECTION, DEFAULT_SIGN_FILE_PATH);
+            string? isOpenFolderAfterSgin = IniFileHelper.ReadIniFileValue(CONFIG_FILE, SECTION, DEFAULT_OPEN_FOLDER_AFTER_SIGN);
+            cbOpenAfterSign.Checked = true.ToString().Equals(isOpenFolderAfterSgin);
         }
 
         private void btnApkFilePath_Click(object sender, EventArgs e)
@@ -149,7 +155,10 @@ namespace AndroidApkSignHelper
                             File.Delete(zipAlginApk);
                             File.Delete(Path.Combine(outApkPath, Path.GetFileNameWithoutExtension(tbApkFilePath.Text) + "-signed.apk.idsig"));
 
-                            Process.Start("explorer", outApkPath);
+                            if (cbOpenAfterSign.Checked)
+                            {
+                                Process.Start("explorer", outApkPath);
+                            }                           
                         });
                     });
                 });
@@ -174,6 +183,12 @@ namespace AndroidApkSignHelper
                         {
                             key = DEFAULT_OUTPUT_APK_PATH;
                             value = tbApkOutputPath.Text;
+                        }
+                        break;
+                    case "cbOpenAfterSign":
+                        {
+                            key = DEFAULT_OPEN_FOLDER_AFTER_SIGN;
+                            value = checkBox.Checked.ToString();
                         }
                         break;
                 }

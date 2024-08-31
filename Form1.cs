@@ -114,18 +114,36 @@ namespace AndroidApkSignHelper
             string pk8 = Path.Combine(signFilePath, "platform.pk8");
             string pem = Path.Combine(signFilePath, "platform.x509.pem");
             string outApkPath = string.IsNullOrEmpty(tbApkOutputPath.Text) ? Path.GetDirectoryName(tbApkFilePath.Text) : tbApkOutputPath.Text;
+          
+            if (!Directory.Exists(outApkPath))
+            {
+                Directory.CreateDirectory(outApkPath);
+            }
+            
             string outApk = Path.Combine(outApkPath, Path.GetFileNameWithoutExtension(tbApkFilePath.Text) + "-signed.apk");
             string inApk = tbApkFilePath.Text;
             string zipAlginApk = Path.Combine(outApkPath, Path.GetFileNameWithoutExtension(tbApkFilePath.Text) + "-zipalign.apk");
 
 
             string zipCmd = $"zipalign.exe -v 4 \"{inApk}\" \"{zipAlginApk}\"";
-            string cmd = $"java -jar apksigner.jar sign --key \"{pk8}\" --cert \"{pem}\" --out \"{outApk}\" --in \"{zipAlginApk}\"";
-            if (Directory.Exists(DEFAULT_JRE_PATH))
-            {
-                cmd = $"{Path.Combine(DEFAULT_JRE_PATH, "bin", "java.exe")} -jar apksigner.jar sign --key \"{pk8}\" --cert \"{pem}\" --out \"{outApk}\" --in \"{zipAlginApk}\"";
-            }
+            string cmd;
 
+            if (rbPem.Checked)
+            {
+                cmd = $"java -jar apksigner.jar sign --key \"{pk8}\" --cert \"{pem}\" --out \"{outApk}\" --in \"{zipAlginApk}\"";
+                if (Directory.Exists(DEFAULT_JRE_PATH))
+                {
+                    cmd = $"{Path.Combine(DEFAULT_JRE_PATH, "bin", "java.exe")} -jar apksigner.jar sign --key \"{pk8}\" --cert \"{pem}\" --out \"{outApk}\" --in \"{zipAlginApk}\"";
+                }
+            } else
+            {
+                cmd = $"java -jar apksigner.jar sign --ks \"{tbKeystore.Text}\" --ks-key-alias {tbAlias.Text} --key-pass pass:{tbKeyPassword.Text} --ks-pass pass:{tbStorePassword.Text} --out \"{outApk}\" --in \"{zipAlginApk}\"";
+                if (Directory.Exists(DEFAULT_JRE_PATH))
+                {
+                    cmd = $"{Path.Combine(DEFAULT_JRE_PATH, "bin", "java.exe")} -jar apksigner.jar sign --ks \"{tbKeystore.Text}\" --ks-key-alias {tbAlias.Text} --key-pass pass:{tbKeyPassword.Text} --ks-pass pass:{tbStorePassword.Text} --out \"{outApk}\" --in \"{zipAlginApk}\"";
+                }
+            }
+           
             if (rbV1.Checked)
             {
                 cmd += " --v1-signing-enabled true --v2-signing-enabled false --v3-signing-enabled false";
@@ -158,7 +176,7 @@ namespace AndroidApkSignHelper
                             if (cbOpenAfterSign.Checked)
                             {
                                 Process.Start("explorer", outApkPath);
-                            }                           
+                            }
                         });
                     });
                 });
@@ -218,6 +236,11 @@ namespace AndroidApkSignHelper
                         tbApkOutputPath.Text = value;
                     }
                     break;
+                case "tbKeystore":
+                    {
+                        tbKeystore.Text = value;
+                    }
+                    break;
             }
         }
 
@@ -232,6 +255,7 @@ namespace AndroidApkSignHelper
                 switch (control.Name)
                 {
                     case "tbApkFilePath":
+                    case "tbKeystore":
                         {
                             if (File.Exists(value))
                             {
@@ -298,6 +322,13 @@ namespace AndroidApkSignHelper
                     Clipboard.SetText(checksum);
                 });
             });
+        }
+
+        private void btnKeystorePath_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.ShowDialog();
+            tbKeystore.Text = ofd.FileName;
         }
     }
 }

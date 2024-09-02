@@ -53,6 +53,7 @@
             cbOpenAfterSign = new CheckBox();
             groupBox2 = new GroupBox();
             groupBox4 = new GroupBox();
+            btnCheckKeyStoreSign = new Button();
             tbKeyPassword = new TextBox();
             label5 = new Label();
             tbStorePassword = new TextBox();
@@ -318,6 +319,7 @@
             // 
             // groupBox4
             // 
+            groupBox4.Controls.Add(btnCheckKeyStoreSign);
             groupBox4.Controls.Add(tbKeyPassword);
             groupBox4.Controls.Add(label5);
             groupBox4.Controls.Add(tbStorePassword);
@@ -332,6 +334,16 @@
             groupBox4.TabIndex = 23;
             groupBox4.TabStop = false;
             groupBox4.Text = "keystore/jks文件配置";
+            // 
+            // btnCheckKeyStoreSign
+            // 
+            btnCheckKeyStoreSign.Location = new Point(330, 80);
+            btnCheckKeyStoreSign.Name = "btnCheckKeyStoreSign";
+            btnCheckKeyStoreSign.Size = new Size(128, 54);
+            btnCheckKeyStoreSign.TabIndex = 10;
+            btnCheckKeyStoreSign.Text = "查看签名文件信息";
+            btnCheckKeyStoreSign.UseVisualStyleBackColor = true;
+            btnCheckKeyStoreSign.Click += btnCheckKeyStoreSign_Click;
             // 
             // tbKeyPassword
             // 
@@ -511,5 +523,6 @@
         private Label label2;
         private TextBox tbKeystore;
         private Button btnKeystorePath;
+        private Button btnCheckKeyStoreSign;
     }
 }

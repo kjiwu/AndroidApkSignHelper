@@ -114,12 +114,12 @@ namespace AndroidApkSignHelper
             string pk8 = Path.Combine(signFilePath, "platform.pk8");
             string pem = Path.Combine(signFilePath, "platform.x509.pem");
             string outApkPath = string.IsNullOrEmpty(tbApkOutputPath.Text) ? Path.GetDirectoryName(tbApkFilePath.Text) : tbApkOutputPath.Text;
-          
+
             if (!Directory.Exists(outApkPath))
             {
                 Directory.CreateDirectory(outApkPath);
             }
-            
+
             string outApk = Path.Combine(outApkPath, Path.GetFileNameWithoutExtension(tbApkFilePath.Text) + "-signed.apk");
             string inApk = tbApkFilePath.Text;
             string zipAlginApk = Path.Combine(outApkPath, Path.GetFileNameWithoutExtension(tbApkFilePath.Text) + "-zipalign.apk");
@@ -135,7 +135,8 @@ namespace AndroidApkSignHelper
                 {
                     cmd = $"{Path.Combine(DEFAULT_JRE_PATH, "bin", "java.exe")} -jar apksigner.jar sign --key \"{pk8}\" --cert \"{pem}\" --out \"{outApk}\" --in \"{zipAlginApk}\"";
                 }
-            } else
+            }
+            else
             {
                 cmd = $"java -jar apksigner.jar sign --ks \"{tbKeystore.Text}\" --ks-key-alias {tbAlias.Text} --key-pass pass:{tbKeyPassword.Text} --ks-pass pass:{tbStorePassword.Text} --out \"{outApk}\" --in \"{zipAlginApk}\"";
                 if (Directory.Exists(DEFAULT_JRE_PATH))
@@ -143,7 +144,7 @@ namespace AndroidApkSignHelper
                     cmd = $"{Path.Combine(DEFAULT_JRE_PATH, "bin", "java.exe")} -jar apksigner.jar sign --ks \"{tbKeystore.Text}\" --ks-key-alias {tbAlias.Text} --key-pass pass:{tbKeyPassword.Text} --ks-pass pass:{tbStorePassword.Text} --out \"{outApk}\" --in \"{zipAlginApk}\"";
                 }
             }
-           
+
             if (rbV1.Checked)
             {
                 cmd += " --v1-signing-enabled true --v2-signing-enabled false --v3-signing-enabled false";
@@ -329,6 +330,44 @@ namespace AndroidApkSignHelper
             OpenFileDialog ofd = new OpenFileDialog();
             ofd.ShowDialog();
             tbKeystore.Text = ofd.FileName;
+        }
+
+        private void btnCheckKeyStoreSign_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(tbKeystore.Text))
+            {
+                MessageBox.Show("请选择证书文件");
+                tbKeystore.Focus();
+                return;
+            }
+
+            if (string.IsNullOrEmpty(tbStorePassword.Text))
+            {
+                MessageBox.Show("请输入证书文件密码");
+                tbStorePassword.Focus();
+                return;
+            }
+
+            if (Directory.Exists(DEFAULT_JRE_PATH))
+            {
+                Utils.GetCmdResultByArguments($"{Path.Combine(DEFAULT_JRE_PATH, "bin", "keytool.exe")}  -list -v -keystore \"{tbKeystore.Text}\" -storepass {tbStorePassword.Text}", (e) =>
+                {
+                    BeginInvoke(() =>
+                    {
+                        rtbOutput.Text = e;
+                    });
+                });
+            }
+            else
+            {
+                Utils.GetCmdResultByArguments($"keytool  -list -v -keystore \"{tbKeystore.Text}\" -storepass {tbStorePassword.Text}", (e) =>
+                {
+                    BeginInvoke(() =>
+                    {
+                        rtbOutput.Text = e;
+                    });
+                });
+            }
         }
     }
 }

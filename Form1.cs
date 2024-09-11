@@ -369,5 +369,16 @@ namespace AndroidApkSignHelper
                 });
             }
         }
+
+        private void btnCheckRelease_Click(object sender, EventArgs e)
+        {
+            Utils.GetCmdResultByArguments($"aapt dump badging \"{tbApkFilePath.Text}\"  | adb shell grep -c application-debuggable", (e) =>
+            {
+                BeginInvoke(() =>
+                {
+                    rtbOutput.Text = e.Trim().Equals("0") ? "release" : "debug";
+                });
+            });
+        }
     }
 }

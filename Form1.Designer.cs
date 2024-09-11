@@ -65,6 +65,7 @@
             groupBox3 = new GroupBox();
             rbKeystore = new RadioButton();
             rbPem = new RadioButton();
+            btnCheckRelease = new Button();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             groupBox4.SuspendLayout();
@@ -192,7 +193,7 @@
             rtbOutput.Location = new Point(512, 12);
             rtbOutput.Name = "rtbOutput";
             rtbOutput.ReadOnly = true;
-            rtbOutput.Size = new Size(569, 780);
+            rtbOutput.Size = new Size(569, 806);
             rtbOutput.TabIndex = 13;
             rtbOutput.Text = "";
             // 
@@ -200,7 +201,7 @@
             // 
             btnSignApk.Location = new Point(12, 704);
             btnSignApk.Name = "btnSignApk";
-            btnSignApk.Size = new Size(84, 34);
+            btnSignApk.Size = new Size(117, 34);
             btnSignApk.TabIndex = 14;
             btnSignApk.Text = "Apk签名";
             btnSignApk.UseVisualStyleBackColor = true;
@@ -208,7 +209,7 @@
             // 
             // btnPrintCert
             // 
-            btnPrintCert.Location = new Point(123, 704);
+            btnPrintCert.Location = new Point(182, 704);
             btnPrintCert.Name = "btnPrintCert";
             btnPrintCert.Size = new Size(127, 34);
             btnPrintCert.TabIndex = 15;
@@ -219,7 +220,7 @@
             // btnApkSignedVersion
             // 
             btnApkSignedVersion.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            btnApkSignedVersion.Location = new Point(277, 704);
+            btnApkSignedVersion.Location = new Point(358, 704);
             btnApkSignedVersion.Name = "btnApkSignedVersion";
             btnApkSignedVersion.Size = new Size(127, 34);
             btnApkSignedVersion.TabIndex = 16;
@@ -264,9 +265,9 @@
             // BtnViewApkInfo
             // 
             BtnViewApkInfo.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            BtnViewApkInfo.Location = new Point(12, 758);
+            BtnViewApkInfo.Location = new Point(12, 744);
             BtnViewApkInfo.Name = "BtnViewApkInfo";
-            BtnViewApkInfo.Size = new Size(111, 34);
+            BtnViewApkInfo.Size = new Size(117, 34);
             BtnViewApkInfo.TabIndex = 20;
             BtnViewApkInfo.Text = "查看Apk信息";
             BtnViewApkInfo.UseVisualStyleBackColor = true;
@@ -275,9 +276,9 @@
             // BtnInstallApk
             // 
             BtnInstallApk.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            BtnInstallApk.Location = new Point(139, 758);
+            BtnInstallApk.Location = new Point(182, 744);
             BtnInstallApk.Name = "BtnInstallApk";
-            BtnInstallApk.Size = new Size(111, 34);
+            BtnInstallApk.Size = new Size(127, 34);
             BtnInstallApk.TabIndex = 21;
             BtnInstallApk.Text = "安装Apk";
             BtnInstallApk.UseVisualStyleBackColor = true;
@@ -285,7 +286,7 @@
             // 
             // btnGetChecksum
             // 
-            btnGetChecksum.Location = new Point(277, 758);
+            btnGetChecksum.Location = new Point(358, 744);
             btnGetChecksum.Name = "btnGetChecksum";
             btnGetChecksum.Size = new Size(127, 34);
             btnGetChecksum.TabIndex = 22;
@@ -448,11 +449,22 @@
             rbPem.Text = "PEM签名文件";
             rbPem.UseVisualStyleBackColor = true;
             // 
+            // btnCheckRelease
+            // 
+            btnCheckRelease.Location = new Point(12, 784);
+            btnCheckRelease.Name = "btnCheckRelease";
+            btnCheckRelease.Size = new Size(117, 34);
+            btnCheckRelease.TabIndex = 25;
+            btnCheckRelease.Text = "验证APK包的类型";
+            btnCheckRelease.UseVisualStyleBackColor = true;
+            btnCheckRelease.Click += btnCheckRelease_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1093, 802);
+            ClientSize = new Size(1093, 824);
+            Controls.Add(btnCheckRelease);
             Controls.Add(groupBox2);
             Controls.Add(cbOpenAfterSign);
             Controls.Add(btnGetChecksum);
@@ -524,5 +536,6 @@
         private TextBox tbKeystore;
         private Button btnKeystorePath;
         private Button btnCheckKeyStoreSign;
+        private Button btnCheckRelease;
     }
 }

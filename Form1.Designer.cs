@@ -53,6 +53,7 @@
             cbOpenAfterSign = new CheckBox();
             groupBox2 = new GroupBox();
             groupBox4 = new GroupBox();
+            btnImportPwdAndAlias = new Button();
             btnCheckKeyStoreSign = new Button();
             tbKeyPassword = new TextBox();
             label5 = new Label();
@@ -66,7 +67,6 @@
             rbKeystore = new RadioButton();
             rbPem = new RadioButton();
             btnCheckRelease = new Button();
-            btnImportPwdAndAlias = new Button();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             groupBox4.SuspendLayout();
@@ -338,6 +338,16 @@
             groupBox4.TabStop = false;
             groupBox4.Text = "keystore/jks文件配置";
             // 
+            // btnImportPwdAndAlias
+            // 
+            btnImportPwdAndAlias.Location = new Point(339, 107);
+            btnImportPwdAndAlias.Name = "btnImportPwdAndAlias";
+            btnImportPwdAndAlias.Size = new Size(128, 36);
+            btnImportPwdAndAlias.TabIndex = 11;
+            btnImportPwdAndAlias.Text = "导入密码和别名";
+            btnImportPwdAndAlias.UseVisualStyleBackColor = true;
+            btnImportPwdAndAlias.Click += btnImportPwdAndAlias_Click;
+            // 
             // btnCheckKeyStoreSign
             // 
             btnCheckKeyStoreSign.Location = new Point(339, 65);
@@ -460,16 +470,6 @@
             btnCheckRelease.Text = "验证APK包的类型";
             btnCheckRelease.UseVisualStyleBackColor = true;
             btnCheckRelease.Click += btnCheckRelease_Click;
-            // 
-            // btnImportPwdAndAlias
-            // 
-            btnImportPwdAndAlias.Location = new Point(339, 118);
-            btnImportPwdAndAlias.Name = "btnImportPwdAndAlias";
-            btnImportPwdAndAlias.Size = new Size(128, 36);
-            btnImportPwdAndAlias.TabIndex = 11;
-            btnImportPwdAndAlias.Text = "导入密码和别名";
-            btnImportPwdAndAlias.UseVisualStyleBackColor = true;
-            btnImportPwdAndAlias.Click += btnImportPwdAndAlias_Click;
             // 
             // Form1
             // 

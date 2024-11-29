@@ -66,6 +66,7 @@
             rbKeystore = new RadioButton();
             rbPem = new RadioButton();
             btnCheckRelease = new Button();
+            btnImportPwdAndAlias = new Button();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             groupBox4.SuspendLayout();
@@ -320,6 +321,7 @@
             // 
             // groupBox4
             // 
+            groupBox4.Controls.Add(btnImportPwdAndAlias);
             groupBox4.Controls.Add(btnCheckKeyStoreSign);
             groupBox4.Controls.Add(tbKeyPassword);
             groupBox4.Controls.Add(label5);
@@ -338,9 +340,9 @@
             // 
             // btnCheckKeyStoreSign
             // 
-            btnCheckKeyStoreSign.Location = new Point(330, 80);
+            btnCheckKeyStoreSign.Location = new Point(339, 65);
             btnCheckKeyStoreSign.Name = "btnCheckKeyStoreSign";
-            btnCheckKeyStoreSign.Size = new Size(128, 54);
+            btnCheckKeyStoreSign.Size = new Size(128, 36);
             btnCheckKeyStoreSign.TabIndex = 10;
             btnCheckKeyStoreSign.Text = "查看签名文件信息";
             btnCheckKeyStoreSign.UseVisualStyleBackColor = true;
@@ -459,6 +461,16 @@
             btnCheckRelease.UseVisualStyleBackColor = true;
             btnCheckRelease.Click += btnCheckRelease_Click;
             // 
+            // btnImportPwdAndAlias
+            // 
+            btnImportPwdAndAlias.Location = new Point(339, 118);
+            btnImportPwdAndAlias.Name = "btnImportPwdAndAlias";
+            btnImportPwdAndAlias.Size = new Size(128, 36);
+            btnImportPwdAndAlias.TabIndex = 11;
+            btnImportPwdAndAlias.Text = "导入密码和别名";
+            btnImportPwdAndAlias.UseVisualStyleBackColor = true;
+            btnImportPwdAndAlias.Click += btnImportPwdAndAlias_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
@@ -537,5 +549,6 @@
         private Button btnKeystorePath;
         private Button btnCheckKeyStoreSign;
         private Button btnCheckRelease;
+        private Button btnImportPwdAndAlias;
     }
 }

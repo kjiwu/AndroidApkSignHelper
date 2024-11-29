@@ -380,5 +380,31 @@ namespace AndroidApkSignHelper
                 });
             });
         }
+
+        private void btnImportPwdAndAlias_Click(object sender, EventArgs e)
+        {
+            const string keystoreInfoFileName = "info.ini";
+            string keystorePath = tbKeystore.Text;
+            if (!string.IsNullOrEmpty(keystorePath))
+            {
+                FileInfo fileInfo = new FileInfo(keystorePath);
+                if (fileInfo.Exists)
+                {
+                    try
+                    {
+                        if (null != fileInfo.Directory)
+                        {
+                            string path = Path.Combine(fileInfo.DirectoryName.ToString(), keystoreInfoFileName);
+
+                            tbAlias.Text = IniFileHelper.ReadIniFileValue(path, fileInfo.Name, "alias");
+                            tbStorePassword.Text = IniFileHelper.ReadIniFileValue(path, fileInfo.Name, "store");
+                            tbKeyPassword.Text = IniFileHelper.ReadIniFileValue(path, fileInfo.Name, "key");
+                        }                        
+                    }
+                    catch { 
+                    }
+                }
+            }
+        }
     }
 }

@@ -67,6 +67,7 @@
             rbKeystore = new RadioButton();
             rbPem = new RadioButton();
             btnCheckRelease = new Button();
+            cbDeleteAfterSign = new CheckBox();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             groupBox4.SuspendLayout();
@@ -471,11 +472,22 @@
             btnCheckRelease.UseVisualStyleBackColor = true;
             btnCheckRelease.Click += btnCheckRelease_Click;
             // 
+            // cbDeleteAfterSign
+            // 
+            cbDeleteAfterSign.AutoSize = true;
+            cbDeleteAfterSign.Location = new Point(184, 558);
+            cbDeleteAfterSign.Name = "cbDeleteAfterSign";
+            cbDeleteAfterSign.Size = new Size(135, 21);
+            cbDeleteAfterSign.TabIndex = 26;
+            cbDeleteAfterSign.Text = "签名完毕删除原文件";
+            cbDeleteAfterSign.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1093, 824);
+            Controls.Add(cbDeleteAfterSign);
             Controls.Add(btnCheckRelease);
             Controls.Add(groupBox2);
             Controls.Add(cbOpenAfterSign);
@@ -550,5 +562,6 @@
         private Button btnCheckKeyStoreSign;
         private Button btnCheckRelease;
         private Button btnImportPwdAndAlias;
+        private CheckBox cbDeleteAfterSign;
     }
 }

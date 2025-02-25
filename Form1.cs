@@ -174,6 +174,11 @@ namespace AndroidApkSignHelper
                             File.Delete(zipAlginApk);
                             File.Delete(Path.Combine(outApkPath, Path.GetFileNameWithoutExtension(tbApkFilePath.Text) + "-signed.apk.idsig"));
 
+                            if (cbDeleteAfterSign.Checked)
+                            {
+                                File.Delete(inApk);
+                            }
+
                             if (cbOpenAfterSign.Checked)
                             {
                                 Process.Start("explorer", outApkPath);

@@ -247,6 +247,11 @@ namespace AndroidApkSignHelper
                         tbKeystore.Text = value;
                     }
                     break;
+                case "tbExtractPath":
+                    {
+                        tbExtractPath.Text = value;
+                    }
+                    break;
             }
         }
 
@@ -261,7 +266,7 @@ namespace AndroidApkSignHelper
                 switch (control.Name)
                 {
                     case "tbApkFilePath":
-                    case "tbKeystore":
+                    case "tbKeystore":                    
                         {
                             if (File.Exists(value))
                             {
@@ -271,6 +276,7 @@ namespace AndroidApkSignHelper
                         break;
                     case "combSignFilePath":
                     case "tbApkOutputPath":
+                    case "tbExtractPath":
                         {
                             if (Directory.Exists(value))
                             {
@@ -404,12 +410,36 @@ namespace AndroidApkSignHelper
                             tbAlias.Text = IniFileHelper.ReadIniFileValue(path, fileInfo.Name, "alias");
                             tbStorePassword.Text = IniFileHelper.ReadIniFileValue(path, fileInfo.Name, "store");
                             tbKeyPassword.Text = IniFileHelper.ReadIniFileValue(path, fileInfo.Name, "key");
-                        }                        
+                        }
                     }
-                    catch { 
+                    catch
+                    {
                     }
                 }
             }
+        }
+
+        private void btnExtractPath_Click(object sender, EventArgs e)
+        {
+            FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
+            folderBrowserDialog.ShowDialog();
+            tbExtractPath.Text = folderBrowserDialog.SelectedPath;
+        }
+
+        private void btnExtract_Click(object sender, EventArgs e)
+        {
+            FileInfo fileInfo = new FileInfo(tbApkFilePath.Text);
+            string fileName = fileInfo.Name.Replace(fileInfo.Extension, "");
+            string path = Path.Combine(tbExtractPath.Text, fileName);          
+
+            string cmd = $"java -jar apktool.jar d \"{tbApkFilePath.Text}\" -o \"{path}\"";
+            Utils.GetCmdResultByArguments(cmd, (e) =>
+            {
+                BeginInvoke(() =>
+                {
+                    rtbOutput.Text = e.Trim();
+                });
+            });
         }
     }
 }

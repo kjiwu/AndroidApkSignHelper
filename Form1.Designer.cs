@@ -68,10 +68,18 @@
             rbPem = new RadioButton();
             btnCheckRelease = new Button();
             cbDeleteAfterSign = new CheckBox();
+            groupBox5 = new GroupBox();
+            btnExtract = new Button();
+            label6 = new Label();
+            btnExtractPath = new Button();
+            tbExtractPath = new TextBox();
+            groupBox6 = new GroupBox();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             groupBox4.SuspendLayout();
             groupBox3.SuspendLayout();
+            groupBox5.SuspendLayout();
+            groupBox6.SuspendLayout();
             SuspendLayout();
             // 
             // tbApkFilePath
@@ -192,10 +200,10 @@
             // 
             rtbOutput.BackColor = SystemColors.ButtonFace;
             rtbOutput.BorderStyle = BorderStyle.FixedSingle;
-            rtbOutput.Location = new Point(512, 12);
+            rtbOutput.Location = new Point(6, 22);
             rtbOutput.Name = "rtbOutput";
             rtbOutput.ReadOnly = true;
-            rtbOutput.Size = new Size(569, 806);
+            rtbOutput.Size = new Size(557, 600);
             rtbOutput.TabIndex = 13;
             rtbOutput.Text = "";
             // 
@@ -482,11 +490,76 @@
             cbDeleteAfterSign.Text = "签名完毕删除原文件";
             cbDeleteAfterSign.UseVisualStyleBackColor = true;
             // 
+            // groupBox5
+            // 
+            groupBox5.Controls.Add(btnExtract);
+            groupBox5.Controls.Add(label6);
+            groupBox5.Controls.Add(btnExtractPath);
+            groupBox5.Controls.Add(tbExtractPath);
+            groupBox5.Location = new Point(512, 30);
+            groupBox5.Name = "groupBox5";
+            groupBox5.Size = new Size(569, 141);
+            groupBox5.TabIndex = 27;
+            groupBox5.TabStop = false;
+            groupBox5.Text = "提取APK内容";
+            // 
+            // btnExtract
+            // 
+            btnExtract.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnExtract.Location = new Point(18, 92);
+            btnExtract.Name = "btnExtract";
+            btnExtract.Size = new Size(127, 34);
+            btnExtract.TabIndex = 22;
+            btnExtract.Text = "提取";
+            btnExtract.UseVisualStyleBackColor = true;
+            btnExtract.Click += btnExtract_Click;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new Point(18, 31);
+            label6.Name = "label6";
+            label6.Size = new Size(56, 17);
+            label6.TabIndex = 11;
+            label6.Text = "提取目录";
+            // 
+            // btnExtractPath
+            // 
+            btnExtractPath.Location = new Point(522, 51);
+            btnExtractPath.Name = "btnExtractPath";
+            btnExtractPath.Size = new Size(26, 23);
+            btnExtractPath.TabIndex = 10;
+            btnExtractPath.Text = "...";
+            btnExtractPath.UseVisualStyleBackColor = true;
+            btnExtractPath.Click += btnExtractPath_Click;
+            // 
+            // tbExtractPath
+            // 
+            tbExtractPath.AllowDrop = true;
+            tbExtractPath.Location = new Point(18, 51);
+            tbExtractPath.Name = "tbExtractPath";
+            tbExtractPath.Size = new Size(498, 23);
+            tbExtractPath.TabIndex = 9;
+            tbExtractPath.DragDrop += control_DragDrop;
+            tbExtractPath.DragEnter += control_DragEnter;
+            // 
+            // groupBox6
+            // 
+            groupBox6.Controls.Add(rtbOutput);
+            groupBox6.Location = new Point(512, 190);
+            groupBox6.Name = "groupBox6";
+            groupBox6.Size = new Size(569, 628);
+            groupBox6.TabIndex = 28;
+            groupBox6.TabStop = false;
+            groupBox6.Text = "输出";
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1093, 824);
+            Controls.Add(groupBox6);
+            Controls.Add(groupBox5);
             Controls.Add(cbDeleteAfterSign);
             Controls.Add(btnCheckRelease);
             Controls.Add(groupBox2);
@@ -501,7 +574,6 @@
             Controls.Add(btnApkSignedVersion);
             Controls.Add(btnPrintCert);
             Controls.Add(btnSignApk);
-            Controls.Add(rtbOutput);
             Controls.Add(groupBox1);
             Controls.Add(btnApkOutputPath);
             Controls.Add(tbApkOutputPath);
@@ -518,6 +590,9 @@
             groupBox4.PerformLayout();
             groupBox3.ResumeLayout(false);
             groupBox3.PerformLayout();
+            groupBox5.ResumeLayout(false);
+            groupBox5.PerformLayout();
+            groupBox6.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -563,5 +638,11 @@
         private Button btnCheckRelease;
         private Button btnImportPwdAndAlias;
         private CheckBox cbDeleteAfterSign;
+        private GroupBox groupBox5;
+        private Label label6;
+        private Button btnExtractPath;
+        private TextBox tbExtractPath;
+        private Button btnExtract;
+        private GroupBox groupBox6;
     }
 }

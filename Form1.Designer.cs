@@ -74,12 +74,20 @@
             btnExtractPath = new Button();
             tbExtractPath = new TextBox();
             groupBox6 = new GroupBox();
+            groupBox7 = new GroupBox();
+            btnTimeChange = new Button();
+            btnPackTime = new Button();
+            btnVersionChange = new Button();
+            lbTimeResult = new Label();
+            label7 = new Label();
+            tbTime = new TextBox();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             groupBox4.SuspendLayout();
             groupBox3.SuspendLayout();
             groupBox5.SuspendLayout();
             groupBox6.SuspendLayout();
+            groupBox7.SuspendLayout();
             SuspendLayout();
             // 
             // tbApkFilePath
@@ -200,12 +208,14 @@
             // 
             rtbOutput.BackColor = SystemColors.ButtonFace;
             rtbOutput.BorderStyle = BorderStyle.FixedSingle;
-            rtbOutput.Location = new Point(6, 22);
+            rtbOutput.Font = new Font("Microsoft YaHei UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            rtbOutput.Location = new Point(6, 26);
             rtbOutput.Name = "rtbOutput";
             rtbOutput.ReadOnly = true;
-            rtbOutput.Size = new Size(557, 600);
+            rtbOutput.Size = new Size(457, 398);
             rtbOutput.TabIndex = 13;
             rtbOutput.Text = "";
+            rtbOutput.WordWrap = false;
             // 
             // btnSignApk
             // 
@@ -498,7 +508,7 @@
             groupBox5.Controls.Add(tbExtractPath);
             groupBox5.Location = new Point(512, 30);
             groupBox5.Name = "groupBox5";
-            groupBox5.Size = new Size(569, 141);
+            groupBox5.Size = new Size(469, 141);
             groupBox5.TabIndex = 27;
             groupBox5.TabStop = false;
             groupBox5.Text = "提取APK内容";
@@ -525,7 +535,7 @@
             // 
             // btnExtractPath
             // 
-            btnExtractPath.Location = new Point(537, 51);
+            btnExtractPath.Location = new Point(437, 51);
             btnExtractPath.Name = "btnExtractPath";
             btnExtractPath.Size = new Size(26, 23);
             btnExtractPath.TabIndex = 10;
@@ -538,7 +548,7 @@
             tbExtractPath.AllowDrop = true;
             tbExtractPath.Location = new Point(6, 51);
             tbExtractPath.Name = "tbExtractPath";
-            tbExtractPath.Size = new Size(525, 23);
+            tbExtractPath.Size = new Size(425, 23);
             tbExtractPath.TabIndex = 9;
             tbExtractPath.DragDrop += control_DragDrop;
             tbExtractPath.DragEnter += control_DragEnter;
@@ -546,18 +556,90 @@
             // groupBox6
             // 
             groupBox6.Controls.Add(rtbOutput);
-            groupBox6.Location = new Point(512, 190);
+            groupBox6.Location = new Point(512, 388);
             groupBox6.Name = "groupBox6";
-            groupBox6.Size = new Size(569, 628);
+            groupBox6.Size = new Size(469, 430);
             groupBox6.TabIndex = 28;
             groupBox6.TabStop = false;
             groupBox6.Text = "输出";
+            // 
+            // groupBox7
+            // 
+            groupBox7.Controls.Add(btnTimeChange);
+            groupBox7.Controls.Add(btnPackTime);
+            groupBox7.Controls.Add(btnVersionChange);
+            groupBox7.Controls.Add(lbTimeResult);
+            groupBox7.Controls.Add(label7);
+            groupBox7.Controls.Add(tbTime);
+            groupBox7.Location = new Point(512, 193);
+            groupBox7.Name = "groupBox7";
+            groupBox7.Size = new Size(469, 176);
+            groupBox7.TabIndex = 29;
+            groupBox7.TabStop = false;
+            groupBox7.Text = "时间转化相关";
+            // 
+            // btnTimeChange
+            // 
+            btnTimeChange.Location = new Point(220, 122);
+            btnTimeChange.Name = "btnTimeChange";
+            btnTimeChange.Size = new Size(101, 38);
+            btnTimeChange.TabIndex = 5;
+            btnTimeChange.Text = "时间戳转化";
+            btnTimeChange.UseVisualStyleBackColor = true;
+            btnTimeChange.Click += btnTimeChange_Click;
+            // 
+            // btnPackTime
+            // 
+            btnPackTime.Location = new Point(113, 122);
+            btnPackTime.Name = "btnPackTime";
+            btnPackTime.Size = new Size(101, 38);
+            btnPackTime.TabIndex = 4;
+            btnPackTime.Text = "打包时间转化";
+            btnPackTime.UseVisualStyleBackColor = true;
+            btnPackTime.Click += btnPackTime_Click;
+            // 
+            // btnVersionChange
+            // 
+            btnVersionChange.Location = new Point(6, 122);
+            btnVersionChange.Name = "btnVersionChange";
+            btnVersionChange.Size = new Size(101, 38);
+            btnVersionChange.TabIndex = 3;
+            btnVersionChange.Text = "版本号转化";
+            btnVersionChange.UseVisualStyleBackColor = true;
+            btnVersionChange.Click += btnVersionChange_Click;
+            // 
+            // lbTimeResult
+            // 
+            lbTimeResult.AutoSize = true;
+            lbTimeResult.Font = new Font("Microsoft YaHei UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            lbTimeResult.Location = new Point(6, 77);
+            lbTimeResult.Name = "lbTimeResult";
+            lbTimeResult.Size = new Size(59, 22);
+            lbTimeResult.TabIndex = 2;
+            lbTimeResult.Text = "label8";
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new Point(6, 26);
+            label7.Name = "label7";
+            label7.Size = new Size(92, 17);
+            label7.TabIndex = 1;
+            label7.Text = "输入待转换时间";
+            // 
+            // tbTime
+            // 
+            tbTime.Location = new Point(6, 46);
+            tbTime.Name = "tbTime";
+            tbTime.Size = new Size(457, 23);
+            tbTime.TabIndex = 0;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1093, 824);
+            ClientSize = new Size(993, 824);
+            Controls.Add(groupBox7);
             Controls.Add(groupBox6);
             Controls.Add(groupBox5);
             Controls.Add(cbDeleteAfterSign);
@@ -581,6 +663,7 @@
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Form1";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Form1";
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
@@ -593,6 +676,8 @@
             groupBox5.ResumeLayout(false);
             groupBox5.PerformLayout();
             groupBox6.ResumeLayout(false);
+            groupBox7.ResumeLayout(false);
+            groupBox7.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -644,5 +729,12 @@
         private TextBox tbExtractPath;
         private Button btnExtract;
         private GroupBox groupBox6;
+        private GroupBox groupBox7;
+        private Label label7;
+        private TextBox tbTime;
+        private Label lbTimeResult;
+        private Button btnVersionChange;
+        private Button btnPackTime;
+        private Button btnTimeChange;
     }
 }

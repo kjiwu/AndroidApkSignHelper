@@ -26,7 +26,7 @@ namespace AndroidApkSignHelper
             tbApkOutputPath.Text = IniFileHelper.ReadIniFileValue(CONFIG_FILE, SECTION, DEFAULT_OUTPUT_APK_PATH);
             combSignFilePath.Text = IniFileHelper.ReadIniFileValue(CONFIG_FILE, SECTION, DEFAULT_SIGN_FILE_PATH);
             string? isOpenFolderAfterSgin = IniFileHelper.ReadIniFileValue(CONFIG_FILE, SECTION, DEFAULT_OPEN_FOLDER_AFTER_SIGN);
-            cbOpenAfterSign.Checked = true.ToString().Equals(isOpenFolderAfterSgin);
+            cbOpenAfterSign.Checked = true.ToString().Equals(isOpenFolderAfterSgin);          
         }
 
         private void btnApkFilePath_Click(object sender, EventArgs e)
@@ -266,7 +266,7 @@ namespace AndroidApkSignHelper
                 switch (control.Name)
                 {
                     case "tbApkFilePath":
-                    case "tbKeystore":                    
+                    case "tbKeystore":
                         {
                             if (File.Exists(value))
                             {
@@ -430,7 +430,7 @@ namespace AndroidApkSignHelper
         {
             FileInfo fileInfo = new FileInfo(tbApkFilePath.Text);
             string fileName = fileInfo.Name.Replace(fileInfo.Extension, "");
-            string path = Path.Combine(tbExtractPath.Text, fileName);          
+            string path = Path.Combine(tbExtractPath.Text, fileName);
 
             string cmd = $"java -jar apktool.jar d \"{tbApkFilePath.Text}\" -o \"{path}\"";
             Utils.GetCmdResultByArguments(cmd, (e) =>
@@ -440,6 +440,24 @@ namespace AndroidApkSignHelper
                     rtbOutput.Text = e.Trim();
                 });
             });
+        }
+
+        private void btnVersionChange_Click(object sender, EventArgs e)
+        {
+            TimeHelper helper = new TimeHelper();
+            lbTimeResult.Text = helper.ConvertVersionTime(tbTime.Text);
+        }
+
+        private void btnPackTime_Click(object sender, EventArgs e)
+        {
+            TimeHelper helper = new TimeHelper();
+            lbTimeResult.Text = helper.ConvertPackageTime(tbTime.Text);
+        }
+
+        private void btnTimeChange_Click(object sender, EventArgs e)
+        {
+            TimeHelper helper = new TimeHelper();
+            lbTimeResult.Text = helper.ConvertTime(tbTime.Text);
         }
     }
 }

@@ -113,7 +113,7 @@
             // 
             // btnSignFilePath
             // 
-            btnSignFilePath.Location = new Point(447, 30);
+            btnSignFilePath.Location = new Point(427, 30);
             btnSignFilePath.Name = "btnSignFilePath";
             btnSignFilePath.Size = new Size(26, 23);
             btnSignFilePath.TabIndex = 5;
@@ -267,7 +267,7 @@
             combSignFilePath.Items.AddRange(new object[] { "item1", "item2" });
             combSignFilePath.Location = new Point(6, 30);
             combSignFilePath.Name = "combSignFilePath";
-            combSignFilePath.Size = new Size(435, 25);
+            combSignFilePath.Size = new Size(415, 25);
             combSignFilePath.TabIndex = 19;
             combSignFilePath.DragDrop += control_DragDrop;
             combSignFilePath.DragEnter += control_DragEnter;
@@ -323,7 +323,7 @@
             groupBox2.Controls.Add(rbPem);
             groupBox2.Location = new Point(12, 71);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(473, 356);
+            groupBox2.Size = new Size(473, 363);
             groupBox2.TabIndex = 24;
             groupBox2.TabStop = false;
             groupBox2.Text = "签名类型";
@@ -340,16 +340,16 @@
             groupBox4.Controls.Add(label2);
             groupBox4.Controls.Add(tbKeystore);
             groupBox4.Controls.Add(btnKeystorePath);
-            groupBox4.Location = new Point(0, 182);
+            groupBox4.Location = new Point(8, 182);
             groupBox4.Name = "groupBox4";
-            groupBox4.Size = new Size(473, 173);
+            groupBox4.Size = new Size(459, 173);
             groupBox4.TabIndex = 23;
             groupBox4.TabStop = false;
             groupBox4.Text = "keystore/jks文件配置";
             // 
             // btnImportPwdAndAlias
             // 
-            btnImportPwdAndAlias.Location = new Point(339, 107);
+            btnImportPwdAndAlias.Location = new Point(301, 107);
             btnImportPwdAndAlias.Name = "btnImportPwdAndAlias";
             btnImportPwdAndAlias.Size = new Size(128, 36);
             btnImportPwdAndAlias.TabIndex = 11;
@@ -359,7 +359,7 @@
             // 
             // btnCheckKeyStoreSign
             // 
-            btnCheckKeyStoreSign.Location = new Point(339, 65);
+            btnCheckKeyStoreSign.Location = new Point(301, 65);
             btnCheckKeyStoreSign.Name = "btnCheckKeyStoreSign";
             btnCheckKeyStoreSign.Size = new Size(128, 36);
             btnCheckKeyStoreSign.TabIndex = 10;
@@ -420,14 +420,14 @@
             tbKeystore.AllowDrop = true;
             tbKeystore.Location = new Point(6, 31);
             tbKeystore.Name = "tbKeystore";
-            tbKeystore.Size = new Size(435, 23);
+            tbKeystore.Size = new Size(415, 23);
             tbKeystore.TabIndex = 2;
             tbKeystore.DragDrop += control_DragDrop;
             tbKeystore.DragEnter += control_DragEnter;
             // 
             // btnKeystorePath
             // 
-            btnKeystorePath.Location = new Point(447, 31);
+            btnKeystorePath.Location = new Point(427, 31);
             btnKeystorePath.Name = "btnKeystorePath";
             btnKeystorePath.Size = new Size(26, 23);
             btnKeystorePath.TabIndex = 3;
@@ -441,9 +441,9 @@
             groupBox3.Controls.Add(combSignFilePath);
             groupBox3.Controls.Add(btnSignFilePath);
             groupBox3.Controls.Add(cbDefaultSignFilePath);
-            groupBox3.Location = new Point(0, 74);
+            groupBox3.Location = new Point(8, 79);
             groupBox3.Name = "groupBox3";
-            groupBox3.Size = new Size(473, 91);
+            groupBox3.Size = new Size(459, 86);
             groupBox3.TabIndex = 22;
             groupBox3.TabStop = false;
             groupBox3.Text = "系统签名文件路径";
@@ -506,7 +506,7 @@
             // btnExtract
             // 
             btnExtract.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            btnExtract.Location = new Point(18, 92);
+            btnExtract.Location = new Point(6, 80);
             btnExtract.Name = "btnExtract";
             btnExtract.Size = new Size(127, 34);
             btnExtract.TabIndex = 22;
@@ -517,7 +517,7 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(18, 31);
+            label6.Location = new Point(6, 31);
             label6.Name = "label6";
             label6.Size = new Size(56, 17);
             label6.TabIndex = 11;
@@ -525,7 +525,7 @@
             // 
             // btnExtractPath
             // 
-            btnExtractPath.Location = new Point(522, 51);
+            btnExtractPath.Location = new Point(537, 51);
             btnExtractPath.Name = "btnExtractPath";
             btnExtractPath.Size = new Size(26, 23);
             btnExtractPath.TabIndex = 10;
@@ -536,9 +536,9 @@
             // tbExtractPath
             // 
             tbExtractPath.AllowDrop = true;
-            tbExtractPath.Location = new Point(18, 51);
+            tbExtractPath.Location = new Point(6, 51);
             tbExtractPath.Name = "tbExtractPath";
-            tbExtractPath.Size = new Size(498, 23);
+            tbExtractPath.Size = new Size(525, 23);
             tbExtractPath.TabIndex = 9;
             tbExtractPath.DragDrop += control_DragDrop;
             tbExtractPath.DragEnter += control_DragEnter;

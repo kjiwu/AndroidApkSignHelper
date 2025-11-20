@@ -289,7 +289,7 @@ namespace AndroidApkSignHelper
                         break;
                     case "combSignFilePath":
                     case "tbApkOutputPath":
-                    case "tbExtractPath":                    
+                    case "tbExtractPath":
                         {
                             if (Directory.Exists(value))
                             {

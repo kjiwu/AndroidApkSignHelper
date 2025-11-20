@@ -593,14 +593,14 @@
             groupBox7.Controls.Add(tbTime);
             groupBox7.Location = new Point(6, 17);
             groupBox7.Name = "groupBox7";
-            groupBox7.Size = new Size(492, 176);
+            groupBox7.Size = new Size(492, 166);
             groupBox7.TabIndex = 29;
             groupBox7.TabStop = false;
             groupBox7.Text = "时间转化相关";
             // 
             // btnTimeChange
             // 
-            btnTimeChange.Location = new Point(220, 122);
+            btnTimeChange.Location = new Point(220, 75);
             btnTimeChange.Name = "btnTimeChange";
             btnTimeChange.Size = new Size(101, 38);
             btnTimeChange.TabIndex = 5;
@@ -610,7 +610,7 @@
             // 
             // btnPackTime
             // 
-            btnPackTime.Location = new Point(113, 122);
+            btnPackTime.Location = new Point(113, 75);
             btnPackTime.Name = "btnPackTime";
             btnPackTime.Size = new Size(101, 38);
             btnPackTime.TabIndex = 4;
@@ -620,7 +620,7 @@
             // 
             // btnVersionChange
             // 
-            btnVersionChange.Location = new Point(6, 122);
+            btnVersionChange.Location = new Point(6, 75);
             btnVersionChange.Name = "btnVersionChange";
             btnVersionChange.Size = new Size(101, 38);
             btnVersionChange.TabIndex = 3;
@@ -632,7 +632,7 @@
             // 
             lbTimeResult.AutoSize = true;
             lbTimeResult.Font = new Font("Microsoft YaHei UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            lbTimeResult.Location = new Point(6, 77);
+            lbTimeResult.Location = new Point(6, 126);
             lbTimeResult.Name = "lbTimeResult";
             lbTimeResult.Size = new Size(0, 22);
             lbTimeResult.TabIndex = 2;
@@ -728,13 +728,13 @@
             // 
             // rtbOutput
             // 
-            rtbOutput.BackColor = SystemColors.ButtonFace;
-            rtbOutput.BorderStyle = BorderStyle.FixedSingle;
+            rtbOutput.BackColor = SystemColors.Control;
+            rtbOutput.BorderStyle = BorderStyle.None;
             rtbOutput.Font = new Font("Microsoft YaHei UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
             rtbOutput.Location = new Point(6, 26);
             rtbOutput.Name = "rtbOutput";
             rtbOutput.ReadOnly = true;
-            rtbOutput.Size = new Size(514, 828);
+            rtbOutput.Size = new Size(516, 828);
             rtbOutput.TabIndex = 13;
             rtbOutput.Text = "";
             rtbOutput.WordWrap = false;

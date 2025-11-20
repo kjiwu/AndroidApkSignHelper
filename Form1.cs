@@ -26,7 +26,7 @@ namespace AndroidApkSignHelper
             tbApkOutputPath.Text = IniFileHelper.ReadIniFileValue(CONFIG_FILE, SECTION, DEFAULT_OUTPUT_APK_PATH);
             combSignFilePath.Text = IniFileHelper.ReadIniFileValue(CONFIG_FILE, SECTION, DEFAULT_SIGN_FILE_PATH);
             string? isOpenFolderAfterSgin = IniFileHelper.ReadIniFileValue(CONFIG_FILE, SECTION, DEFAULT_OPEN_FOLDER_AFTER_SIGN);
-            cbOpenAfterSign.Checked = true.ToString().Equals(isOpenFolderAfterSgin);          
+            cbOpenAfterSign.Checked = true.ToString().Equals(isOpenFolderAfterSgin);
         }
 
         private void btnApkFilePath_Click(object sender, EventArgs e)
@@ -62,6 +62,8 @@ namespace AndroidApkSignHelper
 
         private void btnPrintCert_Click(object sender, EventArgs e)
         {
+            rtbOutput.Text = "";
+
             if (Directory.Exists(DEFAULT_JRE_PATH))
             {
                 Utils.GetCmdResultByArguments($"{Path.Combine(DEFAULT_JRE_PATH, "bin", "keytool.exe")} -printcert -jarfile \"{tbApkFilePath.Text}\"", (e) =>
@@ -86,6 +88,8 @@ namespace AndroidApkSignHelper
 
         private void btnApkSignedVersion_Click(object sender, EventArgs e)
         {
+            rtbOutput.Text = "";
+
             if (Directory.Exists(DEFAULT_JRE_PATH))
             {
                 Utils.GetCmdResultByArguments($"{Path.Combine(DEFAULT_JRE_PATH, "bin", "java.exe")} -jar apksigner.jar verify -v --print-certs \"{tbApkFilePath.Text}\"", (e) =>
@@ -110,6 +114,7 @@ namespace AndroidApkSignHelper
 
         private void btnSignApk_Click(object sender, EventArgs e)
         {
+            rtbOutput.Text = "";
             string signFilePath = GetSignFilePath();
             string pk8 = Path.Combine(signFilePath, "platform.pk8");
             string pem = Path.Combine(signFilePath, "platform.x509.pem");
@@ -252,6 +257,13 @@ namespace AndroidApkSignHelper
                         tbExtractPath.Text = value;
                     }
                     break;
+                case "tbExtractApkPath":
+                    {
+                        tbExtractApkPath.Text = value;
+                        FileInfo fileInfo = new FileInfo(value);
+                        tbExtractPath.Text = fileInfo.DirectoryName;
+                    }
+                    break;
             }
         }
 
@@ -267,6 +279,7 @@ namespace AndroidApkSignHelper
                 {
                     case "tbApkFilePath":
                     case "tbKeystore":
+                    case "tbExtractApkPath":
                         {
                             if (File.Exists(value))
                             {
@@ -276,7 +289,7 @@ namespace AndroidApkSignHelper
                         break;
                     case "combSignFilePath":
                     case "tbApkOutputPath":
-                    case "tbExtractPath":
+                    case "tbExtractPath":                    
                         {
                             if (Directory.Exists(value))
                             {
@@ -301,6 +314,8 @@ namespace AndroidApkSignHelper
 
         private void BtnViewApkInfo_Click(object sender, EventArgs e)
         {
+            rtbOutput.Text = "";
+
             Utils.GetCmdResultByArguments($"aapt.exe dump badging \"{tbApkFilePath.Text}\"", (e) =>
             {
                 BeginInvoke(() =>
@@ -312,6 +327,8 @@ namespace AndroidApkSignHelper
 
         private void BtnInstallApk_Click(object sender, EventArgs e)
         {
+            rtbOutput.Text = "";
+
             Utils.GetCmdResultByArguments($"adb install \"{tbApkFilePath.Text}\"", (e) =>
             {
                 BeginInvoke(() =>
@@ -323,6 +340,8 @@ namespace AndroidApkSignHelper
 
         private void btnGetChecksum_Click(object sender, EventArgs e)
         {
+            rtbOutput.Text = "";
+
             string cmd = $"type {tbApkFilePath.Text} | openssl dgst -binary -sha256 | openssl base64";
             Utils.GetCmdResultByArguments(cmd, (e) =>
             {
@@ -383,6 +402,8 @@ namespace AndroidApkSignHelper
 
         private void btnCheckRelease_Click(object sender, EventArgs e)
         {
+            rtbOutput.Text = "";
+
             Utils.GetCmdResultByArguments($"aapt dump badging \"{tbApkFilePath.Text}\"  | adb shell grep -c application-debuggable", (e) =>
             {
                 BeginInvoke(() =>
@@ -428,6 +449,8 @@ namespace AndroidApkSignHelper
 
         private void btnExtract_Click(object sender, EventArgs e)
         {
+            rtbOutput.Text = "";
+
             FileInfo fileInfo = new FileInfo(tbApkFilePath.Text);
             string fileName = fileInfo.Name.Replace(fileInfo.Extension, "");
             string path = Path.Combine(tbExtractPath.Text, fileName);
@@ -444,20 +467,35 @@ namespace AndroidApkSignHelper
 
         private void btnVersionChange_Click(object sender, EventArgs e)
         {
+            rtbOutput.Text = "";
+
             TimeHelper helper = new TimeHelper();
             lbTimeResult.Text = helper.ConvertVersionTime(tbTime.Text);
         }
 
         private void btnPackTime_Click(object sender, EventArgs e)
         {
+            rtbOutput.Text = "";
+
             TimeHelper helper = new TimeHelper();
             lbTimeResult.Text = helper.ConvertPackageTime(tbTime.Text);
         }
 
         private void btnTimeChange_Click(object sender, EventArgs e)
         {
+            rtbOutput.Text = "";
+
             TimeHelper helper = new TimeHelper();
             lbTimeResult.Text = helper.ConvertTime(tbTime.Text);
+        }
+
+        private void btnExtractApkPath_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.ShowDialog();
+            tbExtractApkPath.Text = ofd.FileName;
+            FileInfo fileInfo = new FileInfo(ofd.FileName);
+            tbExtractPath.Text = fileInfo.DirectoryName;
         }
     }
 }

@@ -451,11 +451,11 @@ namespace AndroidApkSignHelper
         {
             rtbOutput.Text = "";
 
-            FileInfo fileInfo = new FileInfo(tbApkFilePath.Text);
+            FileInfo fileInfo = new FileInfo(tbExtractApkPath.Text);
             string fileName = fileInfo.Name.Replace(fileInfo.Extension, "");
             string path = Path.Combine(tbExtractPath.Text, fileName);
 
-            string cmd = $"java -jar apktool.jar d \"{tbApkFilePath.Text}\" -o \"{path}\"";
+            string cmd = $"java -jar apktool.jar d \"{tbExtractApkPath.Text}\" -o \"{path}\"";
             Utils.GetCmdResultByArguments(cmd, (e) =>
             {
                 BeginInvoke(() =>
